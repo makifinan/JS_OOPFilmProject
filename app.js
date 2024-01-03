@@ -5,8 +5,7 @@ const link = document.querySelector("#url");
 const tbody = document.querySelector("#films");
 const clearButton = document.querySelector("#clear-films");
 
-const ui = new UI();
-const storage = new Storage();
+
 addEventListeners();
 
 
@@ -18,25 +17,24 @@ function addEventListeners(){
 }
 
 function clearAllFilms(e){
-    console.log(e.target)
     if(confirm("Hepsini silmek istediğinize emin misiniz ?")){
-        ui.clearFilmsFromUI();
-        storage.clearFilmsFromStorage();
+        UI.clearFilmsFromUI();
+        Storage.clearFilmsFromStorage();
     }
     
 }
 
 function deleteFilm(e){
     if (e.target.id === "delete-film") {
-        ui.deleteFilmFromUI(e.target);
-        storage.deleteFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
-        ui.showAlert("film storagedan silindi","success");
+        UI.deleteFilmFromUI(e.target);
+        Storage.deleteFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+        UI.showAlert("film storagedan silindi","success");
     }
 }
 
 function documentLoaded(){
-    let storageValue = storage.checkStorage();
-    ui.documentLoaded(storageValue);
+    let storageValue = Storage.checkStorage();
+    UI.documentLoaded(storageValue);
 }
 
 function addFilmToUI(e){
@@ -45,16 +43,16 @@ function addFilmToUI(e){
     const linkValue = link.value;
 
     if (nameInputValue === "" || directorValue === "" || linkValue === "") {
-        ui.showAlert("verileri eksiksiz giriniz","danger");
+        UI.showAlert("verileri eksiksiz giriniz","danger");
     }
     else{
 
         const newFilm = new Film(nameInputValue,directorValue,linkValue)
-        ui.addFilmToUI(newFilm)
-        storage.addStorage(newFilm);
-        ui.showAlert("başarıyla eklendi","success");
+        UI.addFilmToUI(newFilm)
+        Storage.addStorage(newFilm);
+        UI.showAlert("başarıyla eklendi","success");
     }
 
-    ui.clearItems(nameInput,director,link);
+    UI.clearItems(nameInput,director,link);
     e.preventDefault();
 }
