@@ -18,6 +18,8 @@ function addEventListeners(){
 function deleteFilm(e){
     if (e.target.id === "delete-film") {
         ui.deleteFilmFromUI(e.target);
+        storage.deleteFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+        ui.showAlert("film storagedan silindi","success");
     }
 }
 

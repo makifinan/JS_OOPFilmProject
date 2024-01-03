@@ -28,3 +28,12 @@ Storage.prototype.addStorage=function(newFilm){
     localStorage.setItem("films",JSON.stringify(filmStorage));
 
 }
+Storage.prototype.deleteFromStorage = function(textContent){
+    let storage = this.checkStorage();
+    storage.forEach((item,index)=>{
+        if(item.name===textContent){
+            storage.splice(index,1);
+        }
+    });
+    localStorage.setItem("films",JSON.stringify(storage));
+}
