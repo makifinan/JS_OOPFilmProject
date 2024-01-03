@@ -4,11 +4,19 @@ const director = document.querySelector("#director");
 const link = document.querySelector("#url");
 
 const ui = new UI();
+const storage = new Storage();
 addEventListeners();
 
 
 function addEventListeners(){
+    document.addEventListener("DOMContentLoaded",documentLoaded);
     form.addEventListener("submit",addFilmToUI);
+    
+}
+
+function documentLoaded(){
+    let storageValue = storage.checkStorage();
+    ui.documentLoaded(storageValue);
 }
 
 function addFilmToUI(e){
@@ -17,12 +25,14 @@ function addFilmToUI(e){
     const linkValue = link.value;
 
     if (nameInputValue === "" || directorValue === "" || linkValue === "") {
-        //hata fırlat
+        ui.showAlert("verileri eksiksiz giriniz","danger");
     }
     else{
 
         const newFilm = new Film(nameInputValue,directorValue,linkValue)
         ui.addFilmToUI(newFilm)
+        storage.addStorage(newFilm);
+        ui.showAlert("başarıyla eklendi","success");
     }
 
     ui.clearItems(nameInput,director,link);
