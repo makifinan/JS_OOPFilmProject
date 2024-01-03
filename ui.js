@@ -53,3 +53,6 @@ UI.prototype.showAlert=function(message,type){
         alert.remove();
     },1000)
 }
+UI.prototype.deleteFilmFromUI = function(element){
+    element.parentElement.parentElement.remove();
+}
