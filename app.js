@@ -3,6 +3,7 @@ const nameInput = document.querySelector("#title");
 const director = document.querySelector("#director");
 const link = document.querySelector("#url");
 const tbody = document.querySelector("#films");
+const clearButton = document.querySelector("#clear-films");
 
 const ui = new UI();
 const storage = new Storage();
@@ -13,6 +14,16 @@ function addEventListeners(){
     document.addEventListener("DOMContentLoaded",documentLoaded);
     form.addEventListener("submit",addFilmToUI);
     tbody.addEventListener("click",deleteFilm);
+    clearButton.addEventListener("click",clearAllFilms);
+}
+
+function clearAllFilms(e){
+    console.log(e.target)
+    if(confirm("Hepsini silmek istediğinize emin misiniz ?")){
+        ui.clearFilmsFromUI();
+        storage.clearFilmsFromStorage();
+    }
+    
 }
 
 function deleteFilm(e){

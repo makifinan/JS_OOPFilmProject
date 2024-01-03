@@ -37,3 +37,6 @@ Storage.prototype.deleteFromStorage = function(textContent){
     });
     localStorage.setItem("films",JSON.stringify(storage));
 }
+Storage.prototype.clearFilmsFromStorage = function(){
+    localStorage.removeItem("films")
+}

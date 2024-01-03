@@ -56,3 +56,10 @@ UI.prototype.showAlert=function(message,type){
 UI.prototype.deleteFilmFromUI = function(element){
     element.parentElement.parentElement.remove();
 }
+UI.prototype.clearFilmsFromUI = function(){
+    const tbody=document.getElementById("films");
+
+    while (tbody.firstElementChild !== null) {
+        tbody.firstElementChild.remove();
+    }
+}
